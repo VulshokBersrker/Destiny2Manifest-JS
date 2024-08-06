@@ -231,4 +231,4 @@ My functions may not be the most optimzed, but they do work at least.
 
 If you have any questions, you can find me on [Twitter](https://x.com/VulshokB).
 
-My code is heavily commented to help make this README a little smaller. I will leave in my functions for merging the two files in case someone wants to use them.
+My code is heavily commented to help make this README a little smaller. I will leave in my functions for merging the two files in case someone wants to use them. I also have a number of helper functions for smaller tasks, like auto tagging what season an entry is from.
