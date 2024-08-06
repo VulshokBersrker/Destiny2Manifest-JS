@@ -1001,4 +1001,35 @@ savetoJSON(finalData_merged, "/final_test.json");
 */
 
 // Aug 5, 2024 - There are 11 items that have the value released: "" - They are for Solstice of Heroes/Guardian Games
-// This is one entries Commemortive Steed (371288281) that is no on Ishtar, no info to show why
+// This is one entries Commemortive Steed (371288281) that is not on Ishtar, no info to show why
+
+
+//---------------------------- STEP 6 - CHECKING FOR NEW DATA UPLOADED BY BUNGIE ---------------------------- 
+// Repeat the process when new data is uploaded to Bungie
+// We will be checking our old data with new data we pulled by running the previous steps again when new items
+// may have been added to the game
+
+// THIS WILL FIND ANY ENTRIES IN YOUR OLD DATA YOU HAVE DELETED
+
+const checkforNewEntries = (newDataset) => {
+
+  const oldDataset = require('./Finalized Data/D2_MERGED_FINAL.json');
+  let i = 0;
+
+  var newEntries = [];
+
+  Object.keys(newDataset).forEach(function(key) {
+    
+    if(!oldDataset[key]) {
+      newEntries.push(newDataset[key]);
+      i++;
+    }
+  });
+
+  console.log("Step 6 - Number of New Entries after Bungie Update: " + i);
+
+  return newEntries;
+}
+
+const newUpdateData = checkforNewEntries(finalData_merged);
+savetoJSON(newUpdateData, "./NEW_ENTRIES_ONLY.json");
