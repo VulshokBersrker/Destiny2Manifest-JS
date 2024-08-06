@@ -229,4 +229,4 @@ There are a few other things you can do, like merging the Lore and Inventory fil
 
 If you have any questions, you can find me on [Twitter](https://x.com/VulshokB).
 
-My code is heavily commented to help make this README a little smaller.
+My code is heavily commented to help make this README a little smaller. I will leave in my functions for merging the two files in case someone wants to use them.
