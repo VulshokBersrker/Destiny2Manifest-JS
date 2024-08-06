@@ -96,7 +96,7 @@ First we are saying we only want the **Response** of the call. Then we only want
 
 What you should get as a result is a string that looks like a partial URL. 
 
-**'/common/destiny2_content/json/en/DestinyInventoryItemDefinition-e8856610-ba53-4118-9d1a-375ddb5476e4.json' **
+**'/common/destiny2_content/json/en/DestinyInventoryItemDefinition-e8856610-ba53-4118-9d1a-375ddb5476e4.json'**
 
 This is what you are going to get for the **DestinyInventoryItemDefinition**. The numbers may change if there is an update to the game, but this is basically what you will get.
 
