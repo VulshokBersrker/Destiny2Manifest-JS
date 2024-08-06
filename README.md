@@ -226,6 +226,8 @@ There are repeats of a lot of weapons that do not have a screenshot variable. Th
 # Step 4 - You now have much smaller JSON data files with all the Destiny Lore data you need
 There are a few other things you can do, like merging the Lore and Inventory files into one. You can also make a function for later to find all the new lore entries when new things are added to the game.
 
+My functions may not be the most optimzed, but they do work at least.
+
 
 If you have any questions, you can find me on [Twitter](https://x.com/VulshokB).
 
