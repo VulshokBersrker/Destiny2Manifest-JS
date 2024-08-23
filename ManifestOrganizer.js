@@ -112,6 +112,7 @@ const convert_Raw_Destiny_Data_Inventory_Definition = () => {
         || Dataset[key].itemTypeDisplayName === "Submachine Gun"
         || Dataset[key].itemTypeDisplayName === "Combat Bow"
         || Dataset[key].itemTypeDisplayName === "Glaive"
+        || Dataset[key].itemTypeDisplayName === "Seasonal Artifact"
        ) {
       var temp = {
         name: Dataset[key].displayProperties.name,
