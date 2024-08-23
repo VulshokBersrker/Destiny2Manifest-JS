@@ -534,98 +534,116 @@ const findSeasonReleasedLoreBooks = (data) => {
 // Find the season released for Quests (In Progress)
 const findSeasonReleasedQuest = (data) => {
 
-  if(data.includes("A Rising Chorus")) {
+  if(data.includes("A Rising Chorus") 
+  || data.includes("Specimen ID: NES")) {
     return "Episode Echoes";
   }
-  else if(data.includes("A Spark of Hope")) {
+  else if(data.includes("A Spark of Hope") 
+       || data.includes("Lost Lament") 
+       || data.includes("Blast from the Past") 
+       || data.includes("Empire's Fall") 
+       || data.includes("Europa Power")
+       || data.includes("Europa Rewards")
+       || data.includes("Europan Explorer")
+       || data.includes("The Dark Priestess") 
+       || data.includes("The Technocrat")
+       || data.includes("Light Reforged")
+       || data.includes("Born in Darkness")
+       || data.includes("Beyond Light")
+       || data.includes("Umbral Plunder")
+  ) {
     return "Beyond Light"
   }
-  else if(data.includes("Incandescence")) {
+  else if(data.includes("Incandescence") 
+       || data.includes("Captain's Log") 
+       || data.includes("The Final Shape")
+       || data.includes("Forging an Ingot: ")
+       || data.includes("The Return")
+       || data.includes("The Veiled")
+       || data.includes("Lost in the Light")
+       || data.includes("Destined Heroes")
+       || data.includes("Wild Card")
+       || data.include("The Hellmouth")
+  ) {
     return "Final Shape"
   }
-  else if(data.includes("Another Last City")) {
+  else if(data.includes("Another Last City") 
+       || data.includes("The Final Strand")
+       || data.includes("Nock, Draw, Loose, Quiet")
+       || data.includes("Unfinished Business")
+       || data.includes("Lightfall")
+       || data.includes("From Zero")
+  ) {
     return "Lightfall"
   }
-  else if(data.includes("Lost Lament")) {
-    return "Beyond Light"
-  }
-  else if(data.includes("Seraphite")) {
-    return "Warmind"
-  }
-  else if(data.includes("Report: ")) {
+  else if(data.includes("Report: ") 
+       || data.includes("Learning Light")
+       || data.includes("Heavy Does It")
+       || data.includes("The Witch Queen")
+       || data.includes("Hard Evidence")
+       || data.includes("Of Queens and Worms")
+  ) {
     return "Witch Queen"
   }
-  else if(data.includes("The Final Strand")) {
-    return "Lightfall"
-  }
-  else if(data.includes("Europa Power")) {
-    return "Beyond Light"
-  }
-  else if(data.includes("Captain's Log")) {
-    return "Final Shape"
-  }
-  else if(data.includes("Learning Light")) {
-    return "Witch Queen"
-  }
-  else if(data.includes("Simulation Seed")) {
-    return "Curse of Osiris"
-  }
-  else if(data.includes("The Vow")) {
+  else if(data.includes("The Vow")
+       || data.includes("The Journey")
+       || data.includes("Legacy: Shadowkeep")
+  ) {
     return "Shadowkeep"
   }
-  else if(data.includes("The Journey")) {
-    return "Shadowkeep"
-  }
-  else if(data.includes("Heavy Does It")) {
-    return "Witch Queen"
-  }
-  else if(data.includes("Blast from the Past")) {
-    return "Beyond Light"
-  }
-  else if(data.includes("Wolf's Clothing")) {
+  else if(data.includes("Wolf's Clothing")
+  ) {
     return "Season of Opulence"
   }
-  else if(data.includes("Legacy: Shadowkeep")) {
-    return "Shadowkeep"
-  }
-  else if(data.includes("The Final Shape")) {
-    return "Final Shape"
-  }
-  else if(data.includes("O Deepsight Mine")) {
+  else if(data.includes("O Deepsight Mine")
+  ) {
     return "Season of the Deep"
   }
-  else if(data.includes("Empire's Fall")) {
-    return "Beyond Light"
-  }
-  else if(data.includes("Forging an Ingot: ")) {
-    return "Final Shape"
-  }
-  else if(data.includes("The Return")) {
-    return "Final Shape"
-  }
-  else if(data.includes("The Witch Queen")) {
-    return "Witch Queen"
-  }
-  else if(data.includes("The Veiled")) {
-    return "Final Shape"
-  }
-  else if(data.includes("Unfinished Business")) {
-    return "Lightfall"
-  }
-  else if(data.includes("Foundry Shaping")) {
+  else if(data.includes("Foundry Shaping")
+  ) {
     return "Season of Plunder"
   }
-  else if(data.includes("Nock, Draw, Loose, Quiet")) {
-    return "Lightfall"
+  else if(data.includes("A Few More Couldn't Hurt")
+  ) {
+    return "Season of the Forge"
+  }
+  else if(data.includes("Fizzled Trials Token")
+  ) {
+    return "Season of the Worthy"
+  }
+  else if(data.includes("And Out Fly the Wolves")
+       || data.includes("Tying It All Together")
+       || data.includes("Magnum Opus")
+       || data.includes("REVISION 7.2.2")
+  ) {
+    return "Season of the Lost"
+  }
+  else if(data.includes("The Corrupted") 
+       || data.includes("War for the Dreaming City")
+  ) {
+    return "Forsaken"
+  }
+  else if(data.includes("No Trespassing")
+  ) {
+    return "Season of the Haunted"
+  }
+  else if(data.include("In the Shadow of the Mountain")
+  ) {
+    return "Season of the Wish"
   }
   else {
     return "unknown"
   }
 
-  // A lot of different season dups: (Can't auto tag)
+  // A lot of different season dups:
   // A Glowing Solstice
   // Complete Bounties
   // A Spark of Hope
   // Essence of Dawning
+  // Shoot to Score
+  // A Guardian Rises
+  // Guardian Games
+  // Dawning Duty
+  // Celebrating Solstice
 
 }
