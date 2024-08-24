@@ -534,23 +534,43 @@ const findSeasonReleasedLoreBooks = (data) => {
 // Find the season released for Quests (In Progress)
 const findSeasonReleasedQuest = (data) => {
 
-  if(data.includes("A Rising Chorus") 
-  || data.includes("Specimen ID: NES")) {
+  
+  if(data.includes("Echoes Act") 
+  || data.includes("Specimen ID: NES")
+  || data.includes("A Rising Chorus")
+  ) {
     return "Episode Echoes";
   }
   else if(data.includes("A Spark of Hope") 
        || data.includes("Lost Lament") 
        || data.includes("Blast from the Past") 
        || data.includes("Empire's Fall") 
-       || data.includes("Europa Power")
-       || data.includes("Europa Rewards")
-       || data.includes("Europan Explorer")
        || data.includes("The Dark Priestess") 
        || data.includes("The Technocrat")
        || data.includes("Light Reforged")
        || data.includes("Born in Darkness")
        || data.includes("Beyond Light")
+       || data.includes("Europa")
        || data.includes("Umbral Plunder")
+       || data.includes("Stoking The Flame")
+       || data.includes("Empire Hunt")
+       || data.includes("Quid Pro Quo")
+       || data.includes("Aspect of Control")
+       || data.includes("Collectible Detector")
+       || data.includes("Gazing Into The Abyss")
+       || data.includes("Splinter of Darkness")
+       || data.includes("The Stasis Prototype")
+       || data.includes("On the Offensive")
+       || data.includes("Restless Slumber")
+       || data.includes("The Warrior")
+       || data.includes("Walk the Line")
+       || data.includes("Riding the Storm")
+       || data.includes("A Hard Rain Falls")
+       || data.includes("Ornamental Container")
+       || data.includes("Old Secrets, New Challenges")
+       || data.includes("Xenology")
+       || data.includes("Aspect of Destruction")
+       || data === "Soon"
   ) {
     return "Beyond Light"
   }
@@ -563,7 +583,23 @@ const findSeasonReleasedQuest = (data) => {
        || data.includes("Lost in the Light")
        || data.includes("Destined Heroes")
        || data.includes("Wild Card")
-       || data.include("The Hellmouth")
+       || data.includes("The Hellmouth")
+       || data.includes("Alone in the Dark")
+       || data.includes("The Visitation")
+       || data.includes("Convalescence:")
+       || data.includes("The Desperation")
+       || data.includes("The Ascendant")
+       || data.includes("The Past")
+       || data.includes("Found in the Dark")
+       || data.includes("Return to the Arbor of Light")
+       || data.includes("The Heart's Depths")
+       || data.includes("The Shadows")
+       || data.includes("The Illusion")
+       || data.includes("Ghost Reputation")
+       || data.includes("Encoded Log")
+       || data.includes("To Ghost")
+       || data === "The Oracle"
+       || data === "Purification"
   ) {
     return "Final Shape"
   }
@@ -573,6 +609,7 @@ const findSeasonReleasedQuest = (data) => {
        || data.includes("Unfinished Business")
        || data.includes("Lightfall")
        || data.includes("From Zero")
+       || data.includes("…To Hero")
   ) {
     return "Lightfall"
   }
@@ -582,12 +619,22 @@ const findSeasonReleasedQuest = (data) => {
        || data.includes("The Witch Queen")
        || data.includes("Hard Evidence")
        || data.includes("Of Queens and Worms")
+       || data.includes("Meditate on the Light")
+       || data.includes("Trust Goes Both Ways")
+       || data.includes("Shaping: Extraction")
+       || data.includes("Memory Alembic")
+       || data.includes("The Queen Beckons")
+       || data.includes("The Relic")
+       || data.includes("The Gift of Appreciation")
+       || data.includes("The Spring of Power")
+       || data.includes("Reshaping the Enigma") // There is one from Lightfall
   ) {
     return "Witch Queen"
   }
   else if(data.includes("The Vow")
        || data.includes("The Journey")
        || data.includes("Legacy: Shadowkeep")
+       || data.includes("Luna's Calling")
   ) {
     return "Shadowkeep"
   }
@@ -596,18 +643,29 @@ const findSeasonReleasedQuest = (data) => {
     return "Season of Opulence"
   }
   else if(data.includes("O Deepsight Mine")
+       || data.includes("Taming the Storm")
+       || data.includes("Higher Voltage")
+       || data.includes("Parting the Veil")
+       || data.includes("Exalting the Flame")
+       || data === "Rise"
   ) {
     return "Season of the Deep"
   }
   else if(data.includes("Foundry Shaping")
+       || data.includes("The Form of the Danger")
+       || data.includes("Foundry Resonance")
   ) {
     return "Season of Plunder"
   }
   else if(data.includes("A Few More Couldn't Hurt")
+       || data.includes("A Baking Break")
   ) {
     return "Season of the Forge"
   }
   else if(data.includes("Fizzled Trials Token")
+       || data.includes("The Worthy Come to Eververse")
+       || data.includes("Trials Returns")
+       || data.includes("A Good Match")
   ) {
     return "Season of the Worthy"
   }
@@ -615,35 +673,146 @@ const findSeasonReleasedQuest = (data) => {
        || data.includes("Tying It All Together")
        || data.includes("Magnum Opus")
        || data.includes("REVISION 7.2.2")
+       || data.includes("Eternity Beckons")
+       || data.includes("Aspect of Interference")
+       || data.includes("Points Piercing Forever")
+       || data.includes("Stasis Trigger")
+       || data.includes("Competitive Catalyst")
+       || data.includes("Strange Xûr in a Strange Land")
+       || data.includes("To the Daring Go the Spoils")
+       || data.includes("Win Matches")
   ) {
     return "Season of the Lost"
   }
   else if(data.includes("The Corrupted") 
        || data.includes("War for the Dreaming City")
+       || data.includes("Dark Monastery")
+       || data.includes("Commendation Rewards")
+       || data.includes("Broken Courier")
+       || data.includes("The Oracle Engine")
+       || data.includes("The Shattered Throne")
+       || data.includes("Give 5 Commendations")
   ) {
     return "Forsaken"
   }
   else if(data.includes("No Trespassing")
+       || data.includes("Forging Iron")
+       || data.includes("A Single Thread")
   ) {
     return "Season of the Haunted"
   }
-  else if(data.include("In the Shadow of the Mountain")
+  else if(data.includes("In the Shadow of the Mountain")
+       || data.includes("Whispers of the Past")
+       || data.includes("Whispers of the Taken")
+       || data.includes("Asset Protection")
+       || data.includes("An Old Flame")
+       || data.includes("Winter Night")
+       || data.includes("Outbreak Refined")
+       || data.includes("Forged Anew")
+       || data.includes("Drop In")
+       || data.includes("New Light Armor Requisition")
   ) {
     return "Season of the Wish"
   }
+  else if(data.includes("Armor Synthesis Introduction")
+  ) {
+    return "Season of the Splicer"
+  }
+  else if(data.includes("Bottomless Pit")
+       || data.includes("Hunters' Remembrance")
+       || data.includes("Classic Carving")
+       || data.includes("Sophisticated Sculpting")
+       || data.includes("Grenade Logic")
+       || data.includes("Unveiled")
+       || data.includes("Timeline Reflection") // There is one from final shape
+  ) {
+    return "Season of the Witch"
+  }
+  else if(data.includes("Dividing the Ladder")
+       || data.includes("Ares Desperado")
+       || data.includes("Volantes Violentiam")
+  ) {
+    return "Season of the Seraph"
+  }
+  else if(data.includes("Aspect of Influence")
+  ) {
+    return "Season of the Chosen"
+  }
+  else if(data.includes("The Bank Job")
+       || data.includes("A New Season Arrives at Eververse")
+  ) {
+    return "Season of Arrivals"
+  }
+  else if(data.includes("Ascendant Alloy Requisition")
+  ) {
+    return "Season of Plunder"
+  }
+  else if(data.includes("The Dawn Comes to Eververse")
+  ) {
+    return "Season of Dawn"
+  }
+
+
+
+  // events
+  else if(data.includes("Dawning Duty")
+       || data.includes("The Dawning")
+       || data.includes("Cookie Delivery Helper")
+       || data.includes("Essence of Dawning")
+  ) {
+    return "The Dawning"
+  }
+  else if(data.includes("A Glowing Solstice")
+       || data.includes("Celebrating Solstice")
+       || data.includes("Key to Power")
+  ) {
+    return "Solstice of Heroes"
+  }
+  else if(data.includes("Guardian Games")
+       || data.includes("Best in Class")
+       || data.includes("Shoot to Score")
+       || data.includes("Closing Ceremony")
+       || data.includes("Top of Class")
+       || data.includes("Carpe Podium")
+       || data.includes("Medallion Case")
+       || data.includes("Vying for Supremacy")
+  ) {
+    return "Guardian Games"
+  }
+  else if(data.includes("Collect Candy")
+       || data.includes("Just Desserts")
+  ) {
+    return "Festival of the Lost"
+  }
+  // A lot of different season dups:
+  else if(data.includes("Complete Bounties")
+       || data.includes("A Guardian Rises")
+       || data.includes("Reshaping the Enigma")
+       || data.includes("Into the Abyss")
+       || data.includes("Anomalous Object")
+       || data.includes("Trials Access")
+       || data.includes("Prime Example")
+       || data.includes("Making the Cut")
+  ) {
+    return 'Multiple Seasons'
+  }
+
+
+  // Couldn't find anything
   else {
     return "unknown"
   }
 
   // A lot of different season dups:
-  // A Glowing Solstice
   // Complete Bounties
   // A Spark of Hope
-  // Essence of Dawning
-  // Shoot to Score
   // A Guardian Rises
-  // Guardian Games
-  // Dawning Duty
-  // Celebrating Solstice
+  // Reshaping the Enigma
+  // Vying for Supremacy
+  // Into the Abyss
+  // Trials Access
+  // Anomalous Object
+  // Prime Example
+  // Making the Cut
 
 }
