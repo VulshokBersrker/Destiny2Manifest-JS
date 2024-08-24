@@ -61,9 +61,10 @@ All the data is separated into different languages. I will be focusing on the 'e
 ```
 
 ### DestinyLoreDefinition
-stores all the lore entries in the game for all the lore books, armor, weapons, and seasonal artifacts.
+stores all the lore entries in the game for all the lore books, armor, weapons, quests, and seasonal artifacts.
 ### DestinyInventoryItemDefinition
 stores all the data for any item that appears in your inventory. From weapons, armor, artifacts, consumables, and even ornaments.
+
 
 # Step 1 - Making the first fetch call
 ### Once you have your API Key you can make the first call to get the lore data. We will be using basic fetches to make the calls.
