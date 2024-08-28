@@ -358,14 +358,13 @@ savetoJSON(finalData_merged, "/final_test.json");
 
 //---------------------------- STEP 5 - CHECKING FOR NEW DATA UPLOADED BY BUNGIE ---------------------------- 
 // Repeat the process when new data is uploaded to Bungie
-// We will be checking our old data with new data we pulled by running the previous steps again when new items
-// may have been added to the game
+// We will be checking our old data with new data we pulled by running the previous steps again when new items may have been added to the game
 
-// THIS WILL FIND ANY ENTRIES IN YOUR OLD DATA YOU HAVE DELETED
+// THIS WILL ALSO FIND ANY ENTRIES IN YOUR OLD DATA YOU HAVE DELETED
 
 const checkforNewEntries = (newDataset) => {
 
-  const oldDataset = require('./Finalized Data/D2_MERGED_FINAL.json');
+  const oldDataset = require('./Finalized Data/D2_OLD_FINAL_DATA.json');
   let i = 0;
 
   var newEntries = [];
