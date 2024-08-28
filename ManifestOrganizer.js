@@ -71,11 +71,9 @@ const DataTemplate = {
 
 
 //---------------------------- STEP 2 - EDIT DOWN THE RAW DATA ---------------------------- 
-// We are going to go through the raw data and keep only select entries
-// and only keep certain data from those entries
+// We are going to go through the raw data and keep only select values from each entry
 
-
-// FROM INVENTORY-DEFINITION (Don't worry about Dups yet)
+// FROM INVENTORY-DEFINITION
 const convert_Raw_Destiny_Data_Inventory_Definition = () => {
   const Dataset = require('./Raw Data from Bungie/D2_MANI_INVENT.json');
   var newData = [];
@@ -85,47 +83,42 @@ const convert_Raw_Destiny_Data_Inventory_Definition = () => {
     // Look for only Armor / Weapons / and Inventory Items with lore
     else if( Dataset[key].itemTypeDisplayName === "Chest Armor"
         || Dataset[key].itemTypeDisplayName === "Ghost Shell"
-        || Dataset[key].itemTypeDisplayName === "Vehicle"
-        || Dataset[key].itemTypeDisplayName === "Leg Armor"
-        || Dataset[key].itemTypeDisplayName === "Helmet"
-        || Dataset[key].itemTypeDisplayName === "Hunter Cloak"
-        || Dataset[key].itemTypeDisplayName === "Warlock Bond"
-        || Dataset[key].itemTypeDisplayName === "Titan Mark"
-        || Dataset[key].itemTypeDisplayName === "Auto Rifle"
-        || Dataset[key].itemTypeDisplayName === "Scout Rifle"
-        || Dataset[key].itemTypeDisplayName === "Pulse Rifle"
-        || Dataset[key].itemTypeDisplayName === "Sniper Rifle"
-        || Dataset[key].itemTypeDisplayName === "Shotgun"
-        || Dataset[key].itemTypeDisplayName === "Fusion Rifle"
-        || Dataset[key].itemTypeDisplayName === "Trace Rifle"
-        || Dataset[key].itemTypeDisplayName === "Rocket Launcher"
-        || Dataset[key].itemTypeDisplayName === "Hand Cannon"
-        || Dataset[key].itemTypeDisplayName === "Machine Gun"
-        || Dataset[key].itemTypeDisplayName === "Linear Fusion Rifle"
-        || Dataset[key].itemTypeDisplayName === "Sidearm"
-        || Dataset[key].itemTypeDisplayName === "Gauntlets"
-        || Dataset[key].itemTypeDisplayName === "Lore"
-        || Dataset[key].itemTypeDisplayName === "Consumable"
-        || Dataset[key].itemTypeDisplayName === "Ship"
-        || Dataset[key].itemTypeDisplayName === "Sword"
-        || Dataset[key].itemTypeDisplayName === "Grenade Launcher"
-        || Dataset[key].itemTypeDisplayName === "Submachine Gun"
-        || Dataset[key].itemTypeDisplayName === "Combat Bow"
-        || Dataset[key].itemTypeDisplayName === "Glaive"
-        || Dataset[key].itemTypeDisplayName === "Seasonal Artifact"
-       ) {
+      || Dataset[key].itemTypeDisplayName === "Vehicle"
+      || Dataset[key].itemTypeDisplayName === "Leg Armor"
+      || Dataset[key].itemTypeDisplayName === "Helmet"
+      || Dataset[key].itemTypeDisplayName === "Hunter Cloak"
+      || Dataset[key].itemTypeDisplayName === "Warlock Bond"
+      || Dataset[key].itemTypeDisplayName === "Titan Mark"
+      || Dataset[key].itemTypeDisplayName === "Auto Rifle"
+      || Dataset[key].itemTypeDisplayName === "Scout Rifle"
+      || Dataset[key].itemTypeDisplayName === "Pulse Rifle"
+      || Dataset[key].itemTypeDisplayName === "Sniper Rifle"
+      || Dataset[key].itemTypeDisplayName === "Shotgun"
+      || Dataset[key].itemTypeDisplayName === "Fusion Rifle"
+      || Dataset[key].itemTypeDisplayName === "Trace Rifle"
+      || Dataset[key].itemTypeDisplayName === "Rocket Launcher"
+      || Dataset[key].itemTypeDisplayName === "Hand Cannon"
+      || Dataset[key].itemTypeDisplayName === "Machine Gun"
+      || Dataset[key].itemTypeDisplayName === "Linear Fusion Rifle"
+      || Dataset[key].itemTypeDisplayName === "Sidearm"
+      || Dataset[key].itemTypeDisplayName === "Gauntlets"
+      || Dataset[key].itemTypeDisplayName === "Lore"
+      || Dataset[key].itemTypeDisplayName === "Consumable"
+      || Dataset[key].itemTypeDisplayName === "Ship"
+      || Dataset[key].itemTypeDisplayName === "Sword"
+      || Dataset[key].itemTypeDisplayName === "Grenade Launcher"
+      || Dataset[key].itemTypeDisplayName === "Submachine Gun"
+      || Dataset[key].itemTypeDisplayName === "Combat Bow"
+      || Dataset[key].itemTypeDisplayName === "Glaive"
+      || Dataset[key].itemTypeDisplayName === "Seasonal Artifact"
+    ) {
       var temp = {
         name: Dataset[key].displayProperties.name,
-        description: Dataset[key].displayProperties.description,
         hasIcon: Dataset[key].displayProperties.hasIcon,
-        icon: "",
-        subtitle: Dataset[key].subtitle,
         hash: Dataset[key].hash,
-        index: "",
-        loreHash: Dataset[key].loreHash,
+        index: Dataset[key].index,
         redacted: Dataset[key].redacted,
         blacklisted: Dataset[key].blacklisted,
-        flavorText: Dataset[key].flavorText,
         itemTypeAndTierDisplayName: Dataset[key].itemTypeAndTierDisplayName,
         imageURL: "https://www.bungie.net/".concat(Dataset[key].screenshot),
         isLoreBook: true,
@@ -134,27 +127,41 @@ const convert_Raw_Destiny_Data_Inventory_Definition = () => {
       }
 
       if(Dataset[key].displayProperties.hasIcon === true) {
-        temp.icon = "https://www.bungie.net/".concat(Dataset[key].displayProperties.icon);
+        temp["icon"] = "https://www.bungie.net/".concat(Dataset[key].displayProperties.icon);
       }
 
-      if(Dataset[key].screenshot !== undefined) {
-        // If there is no iconWatermark - find the backup icon location
-        if(Dataset[key].iconWatermark === undefined) {
-          if(Dataset[key].quality !== undefined) {
-            if(Dataset[key].quality.displayVersionWatermarkIcons[0] !== undefined) {
-              temp.icon = "https://www.bungie.net/".concat(Dataset[key].quality.displayVersionWatermarkIcons[0])
-              temp.released = findSeasonReleased(Dataset[key].quality.displayVersionWatermarkIcons[0]);
-            }
+      if(Dataset[key].iconWatermark === undefined) {
+        if(Dataset[key].quality !== undefined) {
+          if(Dataset[key].quality.displayVersionWatermarkIcons[0] !== undefined) {
+            temp.icon = "https://www.bungie.net/".concat(Dataset[key].quality.displayVersionWatermarkIcons[0])
+            temp.released = findSeasonReleased(Dataset[key].quality.displayVersionWatermarkIcons[0]);
           }
         }
-        // If there is the iconWatermark
-        else {
-          temp.released = findSeasonReleased(Dataset[key].iconWatermark);
-        }
+      }
+      // If there is the iconWatermark
+      else {
+        temp.released = findSeasonReleased(Dataset[key].iconWatermark);
+      }
+
+      if(Dataset[key].loreHash) {
+        temp["loreHash"] = Dataset[key].loreHash;
+      }
+      if(Dataset[key].subtitle) {
+        temp["subtitle"] = Dataset[key].subtitle
+      }
+      if(Dataset[key].displayProperties.description) {
+        temp["description"] = Dataset[key].displayProperties.description
+      }
+      if(Dataset[key].displayProperties.flavorText) {
+        temp["flavorText"] = Dataset[key].flavorText
       }
 
       if(Dataset[key].itemTypeAndTierDisplayName !== "Lore") {
         temp.isLoreBook = false;
+      }
+
+      if(Dataset[key].itemTypeDisplayName === "Seasonal Artifact") {
+        temp.released =  findSeasonReleased_MISC(Dataset[key].displayProperties.name);
       }
     
       newData.push(temp);
@@ -165,7 +172,7 @@ const convert_Raw_Destiny_Data_Inventory_Definition = () => {
   return newData;
 }
 
-// FROM RAW LORE-DEFINITION DATA (Don't worry about Dups yet)
+// FROM RAW LORE-DEFINITION DATA
 const convert_Raw_Destiny_Data_Lore_Definition = () => {
   // We are not saving any entries that have both the subtitle and description empty
   const Dataset = require('./Raw Data from Bungie/D2_MANIFEST-LORE.json');
@@ -178,29 +185,33 @@ const convert_Raw_Destiny_Data_Lore_Definition = () => {
         name: Dataset[key].displayProperties.name,
         description: Dataset[key].displayProperties.description,
         hasIcon: Dataset[key].displayProperties.hasIcon,
-        icon: "",
         subtitle: Dataset[key].subtitle,
         hash: Dataset[key].hash,
         index: Dataset[key].index,
         redacted: Dataset[key].redacted,
         blacklisted: Dataset[key].blacklisted,
         itemTypeAndTierDisplayName: "Lore",
-        imageURL: "",
         isLoreBook: false,
-        loreBookName: "",
         released: ""
       }
 
       if(Dataset[key].displayProperties.hasIcon === true) {
-        temp.icon = "https://www.bungie.net/".concat(Dataset[key].displayProperties.icon);
+        temp["icon"] = "https://www.bungie.net/".concat(Dataset[key].displayProperties.icon);
       }
 
       if(Dataset[key].displayProperties.hasIcon === true) {
-        var res = findSeasonReleasedLoreBooks(Dataset[key].displayProperties.icon);
-        temp.loreBookName = res.loreBookName;
+        var res = findSeasonReleased_LoreBooks(Dataset[key].displayProperties.icon);
+        temp["loreBookName"] = res.loreBookName;
         temp.released = res.released;
-        temp.imageURL = res.imageURL;
+        temp["imageURL"] = res.imageURL;
         temp.isLoreBook = res.isLoreBook;
+      }
+
+      if(temp.released === "") {
+        temp.released = findSeasonReleased_MISC(temp.name);
+        if(temp.released !== "unknown") {
+          temp.itemTypeAndTierDisplayName = "Legendary Seasonal Artifact";
+        }
       }
 
       newData.push(temp);
@@ -217,154 +228,16 @@ const loreData = convert_Raw_Destiny_Data_Lore_Definition();
 
 
 
-//------------------- If there are any unknown released item, these are most likely unreleased items for later in the game's life
-//------------------- Or event items for an event this season
+//------------------- If there are any unknown released items, these are most likely unreleased items for later in the game's life
+//------------------- Or items from the seasonal events
 
-//---------------------------- STEP 3 - REMOVE DUPS FROM THE DATA ---------------------------- 
-// Specifically empty entries and weapons/armor that have defunct parts
-// Don't remove items that were re-released that may contain new lore
-// Ex - ALL Brave weapons have lore different from their original versions
 
-const remove_Dups_from_Editted_Data_Inventory = (Dataset) => {
-  // This will be the data file that you got as raw data from Bungie
-  // const Dataset = require('./D2_STEP_1_MANIFEST_INVENTORY_DATA_EDITTED.json');
 
-  var newData = [];
-
-  Dataset.forEach(item => {
-    var found = false;
-
-    // Find only the dup values that have a working imageURL link
-    for(let i = 0; i < Dataset.length; i++) {
-      if(item.name === Dataset[i].name) {
-        if(item.imageURL !== "https://www.bungie.net/undefined") {
-          found = true;
-          break;
-        }
-      }
-    }
-
-    if(found === true) {
-      var temp = {
-        name: item.name,
-        description: item.description,
-        hasIcon: item.hasIcon,
-        subtitle: item.subtitle,
-        hash: item.hash,
-        index: item.index,
-        loreHash: item.loreHash,
-        redacted: item.redacted,
-        blacklisted: item.blacklisted,
-        icon: item.icon,
-        released: item.released,
-
-        // Data values needed from main data
-        flavorText: item.flavorText,
-        imageURL: item.imageURL,
-        itemTypeAndTierDisplayName: item.itemTypeAndTierDisplayName,
-        isLoreBook: item.isLoreBook,
-        loreBookName: item.loreBookName,
-      }     
-      newData.push(temp);
-    }
-  });
-
-  console.log("Step 3 - Manifest Inventory (Unneeded Dups Removed) Data size: " + newData.length);
-
-  // savetoJSON(newData, "D2_STEP_3_MANIFEST_INVENTORY_DUPS_REMOVED.json");
-  return newData;
-}
-
-const remove_Dups_from_Editted_Data_Lore = (Dataset) => {
-  // This will be the data file that you got as raw data from Bungie
-  // const Dataset = require('./D2_STEP_1_MANIFEST_LORE_DATA_EDITTED.json');
-
-  var newData = [];
-
-  Dataset.forEach(item => {
-    var found = false;
-
-    // Find only the dup values that have a working imageURL link
-    for(let i = 0; i < Dataset.length; i++) {
-      if(item.name === Dataset[i].name) {
-        if(item.imageURL !== "https://www.bungie.net/undefined") {
-          found = true;
-          break;
-        }
-      }
-    }
-
-    if(found === true) {
-      var temp = {
-        name: item.name,
-        description: item.description,
-        hasIcon: item.hasIcon,
-        subtitle: item.subtitle,
-        hash: item.hash,
-        index: item.index,
-        redacted: item.redacted,
-        blacklisted: item.blacklisted,
-        icon: item.icon,
-        released: item.released,
-
-        // Data values needed from main data
-        imageURL: item.imageURL,
-        itemTypeAndTierDisplayName: item.itemTypeAndTierDisplayName,
-        isLoreBook: item.isLoreBook,
-        loreBookName: item.loreBookName,
-      }     
-      newData.push(temp);
-    }
-  });
-
-  console.log("Step 3 - Manifest Lore (Unneeded Dups Removed) Data size: " + newData.length);
-
-  // savetoJSON(newData, "D2_STEP_3_MANIFEST_LORE_DUPS_REMOVED.json");
-  return newData;
-}
-
-const inventoryData_no_Dups = remove_Dups_from_Editted_Data_Inventory(inventoryData);
-const loreData_no_Dups = remove_Dups_from_Editted_Data_Lore(loreData);
-
-// --------------------------------------------- IF YOU DO NOT WANT TO MERGE THE TWO FILES, YOU CAN END HERE --------------------------------------------- 
-
-//---------------------------- STEP 4 - CROSS ADD SOME OF THE DATA ---------------------------- 
-// Specifically empty entries and weapons/armor that have multiple entries
-// Don't remove items that were re-released that contained new lore
-// Ex - ALL Brave weapons have lore different from their original versions
-// The reason I have 'double' added data from both files is to make the merging in step 4 easier and faster. One downside from this merge is that
-// some of the hashes may not turn up results on Ishtar due to the functions replacing them in this step
-
-const add_Data_from_Lore_to_Inventory = (Lore_Dataset, Inventory_Dataset) => {
-
-  // const Lore_Dataset = require('./D2_STEP_2_MANIFEST_LORE_DUPS_REMOVED.json');
-  // const Inventory_Dataset = require('./D2_STEP_2_MANIFEST_INVENTORY_DUPS_REMOVED.json');
-
-  var newData = [];
-  Inventory_Dataset.forEach(item => {  newData.push(item) });
-
-  // We are finding the same items from Inventory to add to Lore
-  for(let i = 0; i < newData.length; i++) {
-    for(let j = 0; j < Lore_Dataset.length; j++) {
-      if(newData[i].name === Lore_Dataset[j].name) {
-        // Values from INVENTORY to copy over to LORE
-        newData[i].description = Lore_Dataset[j].description;
-        newData[i].index = Lore_Dataset[j].index;
-        break;
-      }
-    }
-  }
-
-  console.log("Step 4 - Manifest Inventory New Values Added Data size: " + newData.length);
-
-  // savetoJSON(newData, "D2_STEP_4_MANIFEST_INVENTORY_EXTRA_DATA_ADDED.json");
-  return newData;
-}
+//---------------------------- STEP 3 - CROSS ADD SOME OF THE DATA ---------------------------- 
+// There is some data in the lore definition we have that is missing when the items were released
+// The goal here is to add those released values by using the inventory data we already labeled
 
 const add_Data_from_Inventory_to_Lore = (Lore_Dataset, Inventory_Dataset) => {
-
-  // const Lore_Dataset = require('./D2_STEP_2_MANIFEST_LORE_DUPS_REMOVED.json');
-  // const Inventory_Dataset = require('./D2_STEP_2_MANIFEST_INVENTORY_DUPS_REMOVED.json');
 
   var newData = [];
   Lore_Dataset.forEach(item => {  newData.push(item) });
@@ -372,8 +245,18 @@ const add_Data_from_Inventory_to_Lore = (Lore_Dataset, Inventory_Dataset) => {
   // We are finding the same items from Inventory to add to Lore
   for(let i = 0; i < newData.length; i++) {
     for(let j = 0; j < Inventory_Dataset.length; j++) {
-      if(newData[i].name === Inventory_Dataset[j].name) {
+      if(newData[i].hash === Inventory_Dataset[j].loreHash || newData[i].hash === Inventory_Dataset[j].hash) {
         // Values from INVENTORY to copy over to LORE
+        newData[i].name = Inventory_Dataset[j].name;
+        newData[i].released = Inventory_Dataset[j].released;
+        newData[i].imageURL = Inventory_Dataset[j].imageURL;
+        newData[i].itemTypeAndTierDisplayName = Inventory_Dataset[j].itemTypeAndTierDisplayName;
+        newData[i].icon = Inventory_Dataset[j].icon;
+        newData[i].hasIcon = Inventory_Dataset[j].hasIcon;
+        break;
+      }
+      if(newData[i].name === Inventory_Dataset[j].name) {
+        newData[i].name = Inventory_Dataset[j].name;
         newData[i].released = Inventory_Dataset[j].released;
         newData[i].imageURL = Inventory_Dataset[j].imageURL;
         newData[i].itemTypeAndTierDisplayName = Inventory_Dataset[j].itemTypeAndTierDisplayName;
@@ -384,28 +267,22 @@ const add_Data_from_Inventory_to_Lore = (Lore_Dataset, Inventory_Dataset) => {
     }
   }
 
-  console.log("Step 4 - Manifest Lore New Values Added Data size: " + newData.length);
+  console.log("Step 3 - Manifest Lore New Values Added Data size: " + newData.length);
 
-  // savetoJSON(newData, "D2_STEP_4_MANIFEST_LORE_EXTRA_DATA_ADDED.json");
+  // savetoJSON(newData, "D2_STEP_3_MANIFEST_LORE_EXTRA_DATA_ADDED.json");
   return newData;
 }
 
-const loreDataFinal = add_Data_from_Inventory_to_Lore(loreData_no_Dups, inventoryData_no_Dups);
-const inventoryDataFinal = add_Data_from_Lore_to_Inventory(loreData_no_Dups, inventoryData_no_Dups);
-// savetoJSON(loreDataFinal, "D2_LORE_FINAL.json");
-// savetoJSON(inventoryDataFinal, "D2_INVENTORY_FINAL.json");
-
-// Some entries don't have loreHash, place the hash from LORE into that slot to make sure it's there
+const loreDataFinal = add_Data_from_Inventory_to_Lore(loreData, inventoryData);
 
 
-//---------------------------- STEP 5 - MERGE DATA INTO ONE FILE ---------------------------- 
+// --------------------------------------------- IF YOU DO NOT WANT TO MERGE THE TWO FILES, YOU CAN END HERE --------------------------------------------- 
+
+//---------------------------- STEP 4 - MERGE DATA INTO ONE FILE ---------------------------- 
 // Get all the data from both files (no Dups) and place it into one file
 
 
 const merge_Inventory_into_Lore = (Lore_Dataset, Inventory_Dataset) => {
-
-  // const Lore_Dataset = require('./D2_STEP_3_MANIFEST_LORE_EXTRA_DATA_ADDED.json');
-  // const Inventory_Dataset = require('./D2_STEP_2_MANIFEST_INVENTORY_DUPS_REMOVED.json');
 
   var newData = [];
   Lore_Dataset.forEach(item => { newData.push(item) });
@@ -429,8 +306,8 @@ const merge_Inventory_into_Lore = (Lore_Dataset, Inventory_Dataset) => {
   var jj = 0;
   Object.keys(formatted_With_Keys).forEach(function(key) { jj++; })
 
-  console.log("Step 5 - Merged Lore & Inventory Data size: " + newData.length);
-  console.log("Step 5 - Merged Data with Formatted Key size: " + jj);
+  console.log("Step 4 - Merged Lore & Inventory Data size: " + newData.length);
+  console.log("Step 4 - Merged Data with Formatted Key size: " + jj);
 
   // savetoJSON(newData, "D2_MERGED_FINAL.json");
   return formatted_With_Keys;
@@ -479,7 +356,7 @@ savetoJSON(finalData_merged, "/final_test.json");
 // This is one entries Commemortive Steed (371288281) that is not on Ishtar, no info to show why
 
 
-//---------------------------- STEP 6 - CHECKING FOR NEW DATA UPLOADED BY BUNGIE ---------------------------- 
+//---------------------------- STEP 5 - CHECKING FOR NEW DATA UPLOADED BY BUNGIE ---------------------------- 
 // Repeat the process when new data is uploaded to Bungie
 // We will be checking our old data with new data we pulled by running the previous steps again when new items
 // may have been added to the game
@@ -501,7 +378,7 @@ const checkforNewEntries = (newDataset) => {
     }
   });
 
-  console.log("Step 6 - Number of New Entries after Bungie Update: " + i);
+  console.log("Step 5 - Number of New Entries after Bungie Update: " + i);
 
   return newEntries;
 }
