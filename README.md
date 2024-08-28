@@ -218,16 +218,13 @@ This will be the format of your new data (If you keep my format):
 ```
 
 # Step 3 - My data is smaller now. Is that it?
-Not yet, there are a few duplicate entries in the data.
+You can remove duplicate entries from the database, but some items have been re-released and have different lore. It would take a lot of work to select only the items that are the same weapon/armor but have different lore.
 
-There are repeats of a lot of weapons that do not have a screenshot variable. This will cause the imageURL value in your new data to have a broken URL value. The function I created to remove those Dups is called:
-
-**remove_Dups_from_Editted_Data_Inventory()** and **remove_Dups_from_Editted_Data_Lore()**
 
 # Step 4 - You now have much smaller JSON data files with all the Destiny Lore data you need
 There are a few other things you can do, like merging the Lore and Inventory files into one. You can also make a function for later to find all the new lore entries when new things are added to the game.
 
-My functions may not be the most optimzed, but they do work at least.
+My functions may not be the most optimzed.
 
 
 If you have any questions, you can find me on [Twitter](https://x.com/VulshokB).
