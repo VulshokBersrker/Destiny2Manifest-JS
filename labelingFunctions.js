@@ -816,3 +816,91 @@ const findSeasonReleasedQuest = (data) => {
   // Making the Cut
 
 }
+
+// Just for the Seasonal Arifacts, Super Lore Tabs, and some misc items
+const findSeasonReleased_MISC = (data) => {
+  if(data === "Warmind Khanjali" || data === "Seraph Cipher") {
+    return "Season of the Seraph";
+  }
+  else if(data === "Skeleton Key") {
+    return "Season of Plunder";
+  }
+  else if(data === "Wayfinder's Compass") {
+    return "Season of the Lost";
+  }
+  else if(data === "Paradrome Cube" || data === "Legacy: Splicer Gauntlet") {
+    return "Season of the Splicer";
+  }
+  else if(data === "Seed of Silver Wings") {
+    return "Season of Arrivals";
+  }
+  else if(data === "The Gate Lord's Eye") {
+    return "Season of the Undying";
+  }
+  else if(data === "The Lantern of Osiris") {
+    return "Season of Dawn";
+  }
+  else if(data === "Synaptic Spear") {
+    return "Season of the Risen";
+  }
+  else if(data === "Nightmare Harvester") {
+    return "Season of the Haunted";
+  }
+  else if(data === "Ascendant Scepter") {
+    return "Season of Defiance";
+  }
+  else if(data === "Fang of Xivu Arath" || data === "Dark Heirlooms" || data === "Cryptolith Lure") {
+    return "Season of the Hunt";
+  }
+  else if(data === "Bell of Conquests" || data === "Legacy: Hammer of Proving") {
+    return "Season of the Chosen";
+  }
+  else if(data === "NPA Repulsion Regulator") {
+    return "Season of the Deep";
+  }
+  else if(data === "Fallen Transponder") {
+    return "Season of the Drifter";
+  }
+  else if(data === "Hunter's Journal") {
+    return "Final Shape";
+  }
+  else if(data === "Acolyte's Staff") {
+    return "Season of the Witch";
+  }
+  else if(data === "Queensfoil Censer") {
+    return "Season of the Wish";
+  }
+
+  // Supers
+  else if(data === "Shadebinder" || data === "Behemoth"  || data === "Revenant") {
+    return "Beyond Light";
+  }
+  else if(data === "Sunbreaker" || data === "Dawnblade"  || data === "Gunslinger" || data ==="Striker"
+    || data === "Sentinel" || data === "Stormcaller" || data === "Arcstrider" || data === "Voidwalker" || data === "Nightstalker"
+  ) {
+    return "Witch Queen";
+  }
+  else if(data ==="Threadrunner" || data ==="Berserker" || data ==="Broodweaver") {
+    return "Lightfall"
+  }
+  else if(data === "Prismatic Titan" || data === "Prismatic Warlock" || data === "Prismatic Hunter") {
+    return "Final Shape";
+  }
+
+  // Other
+  else if(data === "The Unclaimed Lightbearer") {
+    return "Beyond Light";
+  }
+  else if(data === "All-Star Mark" || data === "All-Star Cloak" || data === "All-Star Bond") {
+    return "Final Shape";
+  }
+  else if(data === "The Black Box" || data === "The First Idea" || data === "The Machine Child"
+    || data === "The Unsolvable Problem" || data === "The Ghost Synapse" || data === "Spicy Ramen Coupon"
+  ) {
+    return "Warmind";
+  }
+  else {
+    return "unknown";
+  }
+}
+  
